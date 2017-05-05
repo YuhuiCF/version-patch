@@ -1,0 +1,15 @@
+{
+  "name": "fg-fe-version-patch",
+  "version": "3.1.0",
+  "description": "Do version patch for FE modules in Jenkins",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.mcon-group.com/fairgarage/fg-fe-version-patch.git"
+  },
+  "author": "Yuhui.Xiong@mcon-group.com",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^3.19.0",
+    "eslint-config-google": "^0.7.1"
+  }
+}
