@@ -22,7 +22,7 @@ function commitBuild(appVersion) {
 
   if (appVersion !== currentVersion) {
     commands.push('npm --no-git-tag-version version ' + appVersion);
-    commands.push('git add .');
+    commands.push('git add --all .');
     commands.push('git commit -m "[ci skip]: Release build ' +
       appVersion + '"');
   }
