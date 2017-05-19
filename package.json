@@ -1,6 +1,6 @@
 {
   "name": "fg-fe-version-patch",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "description": "Do version patch for FE modules in Jenkins",
   "repository": {
     "type": "git",
