@@ -1,10 +1,10 @@
 {
-  "name": "fg-fe-version-patch",
+  "name": "version-patch",
   "version": "3.1.1",
-  "description": "Do version patch for FE modules in Jenkins",
+  "description": "Do version patch in Jenkins",
   "repository": {
     "type": "git",
-    "url": "https://gitlab.mcon-group.com/fairgarage/fg-fe-version-patch.git"
+    "url": "https://github.com/YuhuiCF/version-patch.git"
   },
   "author": "Yuhui.Xiong@mcon-group.com",
   "license": "ISC",
