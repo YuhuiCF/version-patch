@@ -7,6 +7,9 @@ const createTag = require('./src/createTag');
 const exportEnvVariables = require('./src/exportEnvVariables');
 
 let version;
+// default exportedFile
+let exportedFile = 'jenkins.properties';
+
 let shouldCommitOnly;
 let shouldExportOnly;
 let shouldCreateTagOnly;
@@ -17,6 +20,10 @@ args.forEach((val, index) => {
     shouldCommitOnly = true;
   }
   if (val === '--export') {
+    const exportedFileTemp = args[index + 1];
+    if (exportedFileTemp && !exportedFileTemp.startsWith('--')) {
+      exportedFile = exportedFileTemp;
+    }
     shouldExportOnly = true;
   }
   if (val === '--tag' && args[index + 1]) {
@@ -28,11 +35,14 @@ args.forEach((val, index) => {
 if (shouldCommitOnly) {
   commitBuild(version);
 } else if (shouldExportOnly) {
-  exportEnvVariables();
+  exportEnvVariables({exportedFile});
 } else if (shouldCreateTagOnly) {
   createTag(version);
 } else {
-  exportEnvVariables((data) => {
-    commitBuild(data.appVersion);
+  exportEnvVariables({
+    callback: (data) => {
+      commitBuild(data.appVersion);
+    },
+    exportedFile,
   });
 }

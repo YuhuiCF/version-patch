@@ -9,7 +9,7 @@ module.exports = createTag;
  * Creates a tag for the Jenkins build, with appVersion as parameter
  * with git tag options: -a -f
  * Remember to push the tag with git push --tags
- * @param {string} appVersion The new version of the application
+ * @param {string} appVersion - The new version of the application
  * @return {undefined}
  */
 function createTag(appVersion) {
