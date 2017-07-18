@@ -42,6 +42,7 @@ function exportEnvVariables({callback, exportedFile}) {
     jenkinsVariables.push('APP_VERSION=' + appVersion);
     commands.push('echo "' + jenkinsVariables.join('\n')
       + '" > ' + exportedFile);
+    commands.push(`echo "file ${exportedFile} created"`);
 
     helper.execute(commands.join(' && '), () => {
       if (callback) {
