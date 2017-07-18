@@ -8,12 +8,14 @@ module.exports = exportEnvVariables;
 /**
  * Exports the jenkins.properties file used by Jenkins EnvInject plugin
  * @param {object} obj - Parameter object
- * @param {function} obj.exportedFile - The path of the file to be exported
+ * @param {string} obj.exportedFile - The path of the file to be exported
  * @param {function} obj.callback - The callback function after creating the
  *    target file, with arguments {appVersion: appVersion}
+ * @param {boolean} obj.forcePatch - whether to force patching the version
+ *    or not
  * @return {undefined}
  */
-function exportEnvVariables({callback, exportedFile}) {
+function exportEnvVariables({callback, exportedFile, forcePatch}) {
   if (!exportedFile) {
     return helper.fatal('exportedFile for exportEnvVariables must be given');
   }
@@ -34,7 +36,7 @@ function exportEnvVariables({callback, exportedFile}) {
     let appVersion = helper.patchVersion(currentVersion);
     let commands = [];
 
-    if (stdout.indexOf('not') >= 0) {
+    if (!forcePatch && stdout.indexOf('not') >= 0) {
       appVersion = currentVersion;
     }
 

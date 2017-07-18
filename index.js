@@ -9,6 +9,7 @@ const exportEnvVariables = require('./src/exportEnvVariables');
 let version;
 // default exportedFile
 let exportedFile = 'jenkins.properties';
+let forcePatch = false;
 
 let shouldCommitOnly;
 let shouldExportOnly;
@@ -26,15 +27,22 @@ args.forEach((val, index) => {
     version = args[index + 1];
     shouldCreateTagOnly = true;
   }
+
   if (val === '--exportedFile' && args[index + 1]) {
     exportedFile = args[index + 1];
+  }
+  if (val === '--forcePatch' && args[index + 1]) {
+    forcePatch = true;
   }
 });
 
 if (shouldCommitOnly) {
   commitBuild(version);
 } else if (shouldExportOnly) {
-  exportEnvVariables({exportedFile});
+  exportEnvVariables({
+    exportedFile,
+    forcePatch,
+  });
 } else if (shouldCreateTagOnly) {
   createTag(version);
 } else {
@@ -43,5 +51,6 @@ if (shouldCommitOnly) {
       commitBuild(data.appVersion);
     },
     exportedFile,
+    forcePatch,
   });
 }
