@@ -20,15 +20,14 @@ args.forEach((val, index) => {
     shouldCommitOnly = true;
   }
   if (val === '--export') {
-    const exportedFileTemp = args[index + 1];
-    if (exportedFileTemp && !exportedFileTemp.startsWith('--')) {
-      exportedFile = exportedFileTemp;
-    }
     shouldExportOnly = true;
   }
   if (val === '--tag' && args[index + 1]) {
     version = args[index + 1];
     shouldCreateTagOnly = true;
+  }
+  if (val === '--exportedFile' && args[index + 1]) {
+    exportedFile = args[index + 1];
   }
 });
 
