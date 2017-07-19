@@ -31,7 +31,7 @@ function execute(commands, callbackStdout) {
       return;
     }
 
-    if (stdout) {
+    if (!(error || stderr)) {
       helperModule.log('stdout:\n' + stdout);
       if (callbackStdout) {
         callbackStdout(stdout);
