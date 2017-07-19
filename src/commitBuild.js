@@ -7,10 +7,11 @@ module.exports = commitBuild;
 
 /**
  * Does a commit of the Jenkins build, with appVersion as parameter
- * @param {string} appVersion The new version of the application
+ * @param {string} appVersion - The new version of the application
+ * @param {boolean} forceCommit - Whether to force trying committing or not
  * @return {undefined}
  */
-function commitBuild(appVersion) {
+function commitBuild(appVersion, forceCommit) {
   if (!appVersion) {
     return helper.fatal('appVersion for commitBuild must be given');
   }
@@ -20,7 +21,7 @@ function commitBuild(appVersion) {
   const currentVersion = packageJson.version;
   let commands = [];
 
-  if (appVersion !== currentVersion) {
+  if (forceCommit || appVersion !== currentVersion) {
     commands.push('npm --no-git-tag-version version ' + appVersion);
     commands.push('git add --all .');
     commands.push('git commit -m "[ci skip]: Release build ' +
