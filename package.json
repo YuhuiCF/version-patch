@@ -1,6 +1,6 @@
 {
   "name": "version-patch",
-  "version": "3.4.0",
+  "version": "3.4.1",
   "description": "Do version patch in Jenkins",
   "repository": {
     "type": "git",
