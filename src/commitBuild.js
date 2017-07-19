@@ -21,8 +21,12 @@ function commitBuild(appVersion, forceCommit) {
   const currentVersion = packageJson.version;
   let commands = [];
 
-  if (forceCommit || appVersion !== currentVersion) {
+  if (appVersion !== currentVersion) {
     commands.push('npm --no-git-tag-version version ' + appVersion);
+    commands.push('git add --all .');
+    commands.push('git commit -m "[ci skip]: Release build ' +
+      appVersion + '"');
+  } else if (forceCommit) {
     commands.push('git add --all .');
     commands.push('git commit -m "[ci skip]: Release build ' +
       appVersion + '"');
